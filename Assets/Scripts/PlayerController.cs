@@ -100,10 +100,19 @@ public class PlayerController : MonoBehaviour {
 			{
 				_jumpRequest = true;
 				other.transform.GetComponent<IEnemy>().Hitted(2, Vector2.down);
+				if (_gun != null)
+				{
+					_gun.GetComponent<GunController>().Reload();
+				}
 			}
 		}
 	}
-	
+
+	private void OnCollisionExit2D(Collision2D other)
+	{
+		_onGround = false;
+	}
+
 	public GameObject Gun
 	{
 		get { return _gun; }
