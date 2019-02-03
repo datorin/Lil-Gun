@@ -141,6 +141,7 @@
           <e p="BasicEnemyController.cs" t="Include" />
           <e p="BulletController.cs" t="Include" />
           <e p="Functions.cs" t="Include" />
+          <e p="GateController.cs" t="Include" />
           <e p="GunController.cs" t="Include" />
           <e p="GunTriggerController.cs" t="Include" />
           <e p="IEnemy.cs" t="Include" />
