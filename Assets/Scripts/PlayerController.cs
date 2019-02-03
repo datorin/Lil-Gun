@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Update ()
-	{
+	{		
 		if (Input.GetButtonDown("Jump"))
 		{
 			if (_onGround)
@@ -52,6 +52,23 @@ public class PlayerController : MonoBehaviour {
 		if (Mathf.Abs(_movement) > 0)
 		{
 			_lastMovement = _movement;
+			GetComponent<Animator>().SetBool("isMoving",true);
+			if (_movement < 0)
+			{
+				transform.rotation = Quaternion.Euler(0,180,0);
+			}
+			else
+			{
+				transform.rotation = Quaternion.Euler(0,0,0);
+			} 
+		}
+		else if(Math.Abs(_rigidbody.velocity.y) > 0.01f)
+		{
+			GetComponent<Animator>().SetBool("isMoving",true);
+		}
+		else
+		{
+			GetComponent<Animator>().SetBool("isMoving",false);
 		}
 		
 		if (Input.GetKey(KeyCode.K) && _gun != null)

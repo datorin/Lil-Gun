@@ -43,6 +43,7 @@ public class GunController : MonoBehaviour
 		
 		if (_actualBullets <= 0)
 		{
+			transform.parent.GetComponent<Animator>().SetBool("hasGun",false);
 			transform.parent.GetComponent<PlayerController>().Gun = null;
 			transform.parent = null;
 			
@@ -50,11 +51,13 @@ public class GunController : MonoBehaviour
 			_rigidbody.gravityScale = 0;
 			_rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 			_rigidbody.AddForce(_direction * _gunLaunchForce, ForceMode2D.Impulse);
+			GetComponent<SpriteRenderer>().enabled = true;
 			StartCoroutine(waitAndTrigger(_waitTriggerTime, _rigidbody));
 		} 
 		else if (_actualCooldown <= 0)
 		{
-			var bullet = Instantiate(_bullet, transform.position + (Vector3) _direction * 1, Quaternion.identity);
+			var bullet = Instantiate(_bullet, transform.position + (Vector3) _direction * 1, 
+					Quaternion.AngleAxis(Functions.CalculateAngle(_direction),Vector3.forward));
 			bullet.GetComponent<Rigidbody2D>().AddForce(_direction * _bulletSpeed, ForceMode2D.Impulse);
 			bullet.GetComponent<BulletController>().Direction = _direction;
 			bullet.GetComponent<BulletController>().Damage = _damage;
