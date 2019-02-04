@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool _jumpRequest;
 	private bool _onGround;
+	private float _halfHeight = 0.5f;
+	private float _heightTolerance = 0.2f;
 
 	[SerializeField] private int _airJumps;
 	private int _actualAirJumps;
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 			if (_onGround)
 			{
 				_jumpRequest = true;
-				_onGround = false;	
+				_onGround = false;
 			} 
 			else if (_actualAirJumps > 0)
 			{
@@ -103,23 +105,29 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag(Values.GroundTag))
 		{
-			if (_trigger.GetComponent<TriggerController>().IsGround)
+			foreach (var point in other.contacts)
 			{
-				_onGround = true;
-				_rigidbody.gravityScale = _normalGravity;
-				_actualAirJumps = _airJumps;
+				if(point.normal.y > 0.9f && Math.Abs(_rigidbody.velocity.y) < 0.01f){
+					_onGround = true;
+					_rigidbody.gravityScale = _normalGravity;
+					_actualAirJumps = _airJumps;
+				}
 			}
 		}
+		
 
 		if (other.gameObject.CompareTag(Values.EnemyTag))
 		{
-			if (_trigger.GetComponent<TriggerController>().IsEnemy)
+			foreach (var point in other.contacts)
 			{
-				_jumpRequest = true;
-				other.transform.GetComponent<IEnemy>().Hitted(2, Vector2.down);
-				if (_gun != null)
+				if (point.normal.y > 0.9f)
 				{
-					_gun.GetComponent<GunController>().Reload();
+					_jumpRequest = true;
+					other.transform.GetComponent<IEnemy>().Hitted(2, Vector2.down);
+					if (_gun != null)
+					{
+						_gun.GetComponent<GunController>().Reload();
+					}
 				}
 			}
 		}
