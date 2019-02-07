@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Dani\.Rider2018.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Dani\.Rider2018.2\system\resharper-host\Local\Transient\ReSharperHost\v182\SolutionCaches\_Lil-Gun.912041149.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Dani\Documents\Git Kraken\Lil-Gun" t="IncludeRecursive">
+    <e p="C:\Users\danie\.Rider2018.1\system\resharper-host\Local\Transient\ReSharperHost\v12\SolutionCaches\_Lil-Gun.-1925766370.00" t="ExcludeRecursive" />
+    <e p="D:\Users\Daniel\Documentos\Git\Lil-Gun" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">

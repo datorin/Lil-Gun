@@ -14,6 +14,8 @@ public class GunController : MonoBehaviour
 	[SerializeField] private float _recoil;
 
 	[SerializeField] private float _gunLaunchForce;
+	[SerializeField] private float _gunLaunchTorque;
+	[SerializeField] private int _gunLaunchDamage;
 	[SerializeField] private float _gunGravity;
 	[SerializeField] private float _waitTriggerTime;
 
@@ -51,6 +53,7 @@ public class GunController : MonoBehaviour
 			_rigidbody.gravityScale = 0;
 			_rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 			_rigidbody.AddForce(_direction * _gunLaunchForce, ForceMode2D.Impulse);
+			_rigidbody.AddTorque(_direction.x * _gunLaunchTorque * -1);
 			GetComponent<SpriteRenderer>().enabled = true;
 			StartCoroutine(waitAndTrigger(_waitTriggerTime, _rigidbody));
 		} 
@@ -85,5 +88,13 @@ public class GunController : MonoBehaviour
 		yield return new WaitForSeconds(waitTime);
 		transform.Find("GunTrigger").gameObject.SetActive(true);
 		_rigidbody.gravityScale = _gunGravity;
+	}
+
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.gameObject.CompareTag(Values.EnemyTag))
+		{
+			other.transform.GetComponent<IEnemy>().Hitted(_gunLaunchDamage, _direction);
+		}
 	}
 }
