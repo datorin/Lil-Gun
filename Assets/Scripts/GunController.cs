@@ -49,12 +49,15 @@ public class GunController : MonoBehaviour
 			transform.parent.GetComponent<PlayerController>().Gun = null;
 			transform.parent = null;
 			
+			GetComponent<SpriteRenderer>().enabled = true;
+			GetComponent<BoxCollider2D>().enabled = true;
+			
 			var _rigidbody = gameObject.AddComponent<Rigidbody2D>();
 			_rigidbody.gravityScale = 0;
 			_rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 			_rigidbody.AddForce(_direction * _gunLaunchForce, ForceMode2D.Impulse);
 			_rigidbody.AddTorque(_direction.x * _gunLaunchTorque * -1);
-			GetComponent<SpriteRenderer>().enabled = true;
+			
 			StartCoroutine(waitAndTrigger(_waitTriggerTime, _rigidbody));
 		} 
 		else if (_actualCooldown <= 0)

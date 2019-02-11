@@ -15,6 +15,7 @@ public class GunTriggerController : MonoBehaviour {
 			{
 				Destroy(gun.GetComponent<Rigidbody2D>());
 				gun.GetComponent<SpriteRenderer>().enabled = false;
+				gun.GetComponent<BoxCollider2D>().enabled = false;
 				gun.SetParent(other.transform);
 				gun.localPosition = new Vector3(-0.03125f, -0.125f, 0);
 				gun.localRotation = Quaternion.identity;
