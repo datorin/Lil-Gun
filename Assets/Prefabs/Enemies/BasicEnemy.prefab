@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 2
   _damage: 1
-  _speed: 5
+  _speed: 2
   _recoil: 5
 --- !u!212 &212608469022120556
 SpriteRenderer:

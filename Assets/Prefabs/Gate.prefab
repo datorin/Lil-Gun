@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95929835643743318}
   - component: {fileID: 61645170528770644}
   - component: {fileID: 50917735403165574}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50140006775104460}
   - component: {fileID: 61259338261537750}
   - component: {fileID: 114878536897258986}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1704816813193206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: 93.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4958500814950480}

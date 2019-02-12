@@ -28,7 +28,7 @@ public class GunController : MonoBehaviour
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 		
-		_actualBullets = _bullets;
+		_actualBullets = 0;
 		_actualCooldown = _cooldown;
 	}
 	
@@ -52,13 +52,13 @@ public class GunController : MonoBehaviour
 			GetComponent<SpriteRenderer>().enabled = true;
 			GetComponent<BoxCollider2D>().enabled = true;
 			
-			var _rigidbody = gameObject.AddComponent<Rigidbody2D>();
+			_rigidbody = gameObject.AddComponent<Rigidbody2D>();
 			_rigidbody.gravityScale = 0;
 			_rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 			_rigidbody.AddForce(_direction * _gunLaunchForce, ForceMode2D.Impulse);
 			_rigidbody.AddTorque(_direction.x * _gunLaunchTorque * -1);
 			
-			StartCoroutine(waitAndTrigger(_waitTriggerTime, _rigidbody));
+			StartCoroutine(WaitAndTrigger(_waitTriggerTime, _rigidbody));
 		} 
 		else if (_actualCooldown <= 0)
 		{
@@ -86,7 +86,7 @@ public class GunController : MonoBehaviour
 		_actualBullets = _bullets;
 	}
 
-	private IEnumerator waitAndTrigger(float waitTime, Rigidbody2D _rigidbody)
+	private IEnumerator WaitAndTrigger(float waitTime, Rigidbody2D _rigidbody)
 	{
 		yield return new WaitForSeconds(waitTime);
 		transform.Find("GunTrigger").gameObject.SetActive(true);
@@ -95,7 +95,7 @@ public class GunController : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
-		if(other.gameObject.CompareTag(Values.EnemyTag))
+		if(other.gameObject.CompareTag(Values.EnemyTag) && _rigidbody.velocity.magnitude > 0)
 		{
 			other.transform.GetComponent<IEnemy>().Hitted(_gunLaunchDamage, _direction);
 		}

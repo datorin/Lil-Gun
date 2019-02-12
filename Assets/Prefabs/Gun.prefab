@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381810010471444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -0.5, z: 0}
+  m_LocalPosition: {x: 56, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4832684278033376}
@@ -91,9 +91,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
   m_Material: {fileID: 6200000, guid: 41ec759d714e17749bdb8e34fbef988d, type: 2}
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!50 &50426132747617272
 Rigidbody2D:
@@ -185,7 +185,7 @@ MonoBehaviour:
   _gunLaunchForce: 30
   _gunLaunchTorque: 15
   _gunLaunchDamage: 3
-  _gunGravity: 1
+  _gunGravity: 0.5
   _waitTriggerTime: 0.2
 --- !u!114 &114303772296201654
 MonoBehaviour:
