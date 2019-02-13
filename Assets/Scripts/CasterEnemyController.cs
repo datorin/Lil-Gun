@@ -1,15 +1,17 @@
 ﻿using System.Threading;
 using UnityEngine;
 
-public class BasicEnemyController : MonoBehaviour, IEnemy
+public class CasterEnemyController : MonoBehaviour, IEnemy
 {
     private Rigidbody2D _rigidbody;
 
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private GameObject _emitter;
+    [SerializeField] private float _cooldown;
+    private float _actualCooldown;
     [SerializeField] private int _health;
     [SerializeField] private int _damage;
-    [SerializeField] private float _normalSpeed;
-    [SerializeField] private float _chaceSpeed;
-    private float _speed;
+    [SerializeField] private float _speed;
     [SerializeField] private float _recoil;
 
     private int _actualHealth;
@@ -26,7 +28,6 @@ public class BasicEnemyController : MonoBehaviour, IEnemy
     [SerializeField] private float _minIdleTime;
     private bool _isIdle;
     private bool _isWalk;
-    private bool _isPlayer;
     
     // Use this for initialization
     void Start()
@@ -34,22 +35,24 @@ public class BasicEnemyController : MonoBehaviour, IEnemy
         _actualHealth = _health;
         _rigidbody = GetComponent<Rigidbody2D>();
         _movementDirection = Vector2.left;
-        _speed = _normalSpeed;
         _idleTime = Random.Range(_minIdleTime, _maxIdleTime);
+        _actualCooldown = _cooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var hit = Physics2D.Raycast(transform.position, _movementDirection, _distance);
-        if (hit.transform.CompareTag(Values.PlayerTag))
+        _actualCooldown -= Time.deltaTime;
+        
+        var hit = Physics2D.Raycast(_emitter.transform.position, _movementDirection, _distance);
+        if (hit.transform.CompareTag(Values.PlayerTag) && _actualCooldown < 0)
         {
-            _speed = _chaceSpeed;
-            _isPlayer = true;
-        }
-        else
-        {
-            _isPlayer = false;
+            var bullet = Instantiate(_bullet, transform.position, Quaternion.AngleAxis(Functions.CalculateAngle(_movementDirection),Vector3.forward));
+            bullet.GetComponent<Rigidbody2D>().AddForce(_movementDirection * 5, ForceMode2D.Impulse);
+            bullet.GetComponent<BulletController>().Direction = _movementDirection;
+            bullet.GetComponent<BulletController>().Damage = _damage;
+            
+            _actualCooldown = _cooldown;
         }
 
         bool isGrounded = Physics2D.Linecast(transform.TransformPoint(Vector2.right * _detection), 
@@ -64,7 +67,6 @@ public class BasicEnemyController : MonoBehaviour, IEnemy
         {
             transform.Rotate(0,180,0);
             _movementDirection *= Vector2.left;
-            _speed = _normalSpeed;
         }
 
         if (_walkTime > 0 && _idleTime <= 0)
@@ -85,7 +87,6 @@ public class BasicEnemyController : MonoBehaviour, IEnemy
             _idleTime = Random.Range(_minIdleTime, _maxIdleTime);
             transform.Rotate(0,180,0);
             _movementDirection *= Vector2.left;
-            _speed = _normalSpeed;
         }
 
         if (_isIdle)

@@ -95,7 +95,7 @@ public class GunController : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
-		if(other.gameObject.CompareTag(Values.EnemyTag) && _rigidbody.velocity.magnitude > 0)
+		if(other.gameObject.CompareTag(Values.EnemyTag) && _rigidbody.velocity.magnitude > 0.2f)
 		{
 			other.transform.GetComponent<IEnemy>().Hitted(_gunLaunchDamage, _direction);
 		}

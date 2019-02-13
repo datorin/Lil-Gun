@@ -139,6 +139,7 @@
         <e p="Scripts" t="Include">
           <e p="BasicEnemyController.cs" t="Include" />
           <e p="BulletController.cs" t="Include" />
+          <e p="CasterEnemyController.cs" t="Include" />
           <e p="Functions.cs" t="Include" />
           <e p="GateController.cs" t="Include" />
           <e p="GunController.cs" t="Include" />
