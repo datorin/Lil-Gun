@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _gun;
     [SerializeField] private GameObject _trigger;
 
-    [SerializeField] private float _healthPoints;
+    [SerializeField] private int _maxHealthPoints;
+    private int _currentHealthPoints;
+
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _fallGravity;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour, IInteractable
         _onGround = false;
         _lastMovement = 1;
         _actualAirJumps = _airJumps;
+        _currentHealthPoints = _maxHealthPoints;
     }
 
     // Use this for initialization
@@ -148,6 +151,17 @@ public class PlayerController : MonoBehaviour, IInteractable
 
     public void Hitted(int damage, Vector2 direction)
     {
-        Debug.Log(damage);
+        if(_currentHealthPoints < 0) return;
+        _currentHealthPoints -= damage;
+    }
+    
+    public int CurrentHealthPoints
+    {
+        get { return _currentHealthPoints; }
+    }
+    
+    public int MaxHealthPoints
+    {
+        get { return _maxHealthPoints; }
     }
 }
