@@ -100,4 +100,14 @@ public class GunController : MonoBehaviour
 			other.transform.GetComponent<IInteractable>().Hitted(_gunLaunchDamage, _direction);
 		}
 	}
+	
+	public int Bullets
+	{
+		get { return _bullets; }
+	}
+	
+	public int ActualBullets
+	{
+		get { return _actualBullets; }
+	}
 }

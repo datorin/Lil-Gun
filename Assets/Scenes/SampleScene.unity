@@ -312,6 +312,26 @@ Prefab:
       propertyPath: _player
       value: 
       objectReference: {fileID: 209318510}
+    - target: {fileID: 114154650722730622, guid: ba9bf0a3eb1d8884d929be40ee60ad0b,
+        type: 2}
+      propertyPath: _gun
+      value: 
+      objectReference: {fileID: 381470694}
+    - target: {fileID: 224130396464708264, guid: ba9bf0a3eb1d8884d929be40ee60ad0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 92.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224130396464708264, guid: ba9bf0a3eb1d8884d929be40ee60ad0b,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -224.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 223474018872339446, guid: ba9bf0a3eb1d8884d929be40ee60ad0b,
+        type: 2}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9bf0a3eb1d8884d929be40ee60ad0b, type: 2}
   m_IsPrefabAsset: 0
@@ -492,6 +512,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b646f0c5c11fe469692ec03e3cb3d2, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &381470694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1381810010471444, guid: f85bc1433e0af3444b349274d2fe97aa,
+    type: 2}
+  m_PrefabInternal: {fileID: 718641860}
 --- !u!1001 &397318357
 Prefab:
   m_ObjectHideFlags: 0

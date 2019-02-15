@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1647635221879416}
   m_IsPrefabAsset: 1
+--- !u!1 &1074636666391094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224130396464708264}
+  m_Layer: 5
+  m_Name: BulletsPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1647635221879416
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224990900860659690}
   m_Layer: 5
-  m_Name: HealthPosition
+  m_Name: HeartsPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +97,13 @@ MonoBehaviour:
     type: 2}
   _emptyHeart: {fileID: 1701005967966290, guid: 0136a18ebd26c6c408342641c108d806,
     type: 2}
-  _position: {fileID: 1722233963036258}
+  _heartsPosition: {fileID: 1722233963036258}
+  _gun: {fileID: 0}
+  _filledBullets: {fileID: 1584637598789942, guid: 59a36b30e7b538f43822bb422a702c99,
+    type: 2}
+  _emptyBullets: {fileID: 1059028731588466, guid: ae763b236a46de043984663983837946,
+    type: 2}
+  _bulletsPosition: {fileID: 1074636666391094}
 --- !u!114 &114784636865700062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,6 +140,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!224 &224130396464708264
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074636666391094}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.99999994}
+  m_Children: []
+  m_Father: {fileID: 224518001040134858}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -225.29999, y: 81.00003}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224518001040134858
 RectTransform:
   m_ObjectHideFlags: 1
@@ -130,6 +169,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224990900860659690}
+  - {fileID: 224130396464708264}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
