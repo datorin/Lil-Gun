@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateController : MonoBehaviour {
+public class GateController : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+	[SerializeField] private int _xDistance;
+	[SerializeField] private int _yDistance;
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if(!other.transform.CompareTag(Values.PlayerTag)) return;
@@ -31,11 +25,20 @@ public class GateController : MonoBehaviour {
 		var camera = Camera.main.gameObject;
 		if (other.transform.position.x > transform.position.x && transform.position.x > camera.transform.position.x)
 		{
-			camera.transform.position += new Vector3(32,0,0);
+			camera.transform.position += new Vector3(_xDistance,0,0);
 		}else if (other.transform.position.x < transform.position.x &&
 		          transform.position.x < camera.transform.position.x)
 		{
-			camera.transform.position -= new Vector3(32,0,0);
+			camera.transform.position -= new Vector3(_xDistance,0,0);
+		}
+		
+		if (other.transform.position.y > transform.position.y && transform.position.y > camera.transform.position.y)
+		{
+			camera.transform.position += new Vector3(0,_yDistance,0);
+		}else if (other.transform.position.y < transform.position.y &&
+		          transform.position.y < camera.transform.position.y)
+		{
+			camera.transform.position -= new Vector3(0,_yDistance,0);
 		}
 	}
 }

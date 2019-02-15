@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IInteractable
 {
     private Rigidbody2D _rigidbody;
     [SerializeField] private GameObject _gun;
     [SerializeField] private GameObject _trigger;
 
+    [SerializeField] private float _healthPoints;
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _fallGravity;
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 if (point.normal.y > 0.9f)
                 {
                     _jumpRequest = true;
-                    other.transform.GetComponent<IEnemy>().Hitted(2, Vector2.down);
+                    other.transform.GetComponent<IInteractable>().Hitted(2, Vector2.down);
                     if (_gun != null)
                     {
                         _gun.GetComponent<GunController>().Reload();
@@ -143,5 +144,10 @@ public class PlayerController : MonoBehaviour
     {
         get { return _gun; }
         set { _gun = value; }
+    }
+
+    public void Hitted(int damage, Vector2 direction)
+    {
+        Debug.Log(damage);
     }
 }

@@ -1,7 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    [SerializeField] private string _myTag;
+    [SerializeField] private string _hitTag;
     [SerializeField] private float _time;
     private Vector2 _direction;
     private int _damage;
@@ -18,12 +21,12 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(Values.EnemyTag))
+        if (other.gameObject.CompareTag(_hitTag))
         {
-            other.GetComponent<IEnemy>().Hitted(1, _direction);
+            other.GetComponent<IInteractable>().Hitted(1, _direction);
         }
 
-        if (other.gameObject.CompareTag(Values.PlayerTag)) return;
+        if (other.gameObject.CompareTag(_myTag)) return;
         Destroy(gameObject);
     }
 

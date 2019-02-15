@@ -97,7 +97,7 @@ public class GunController : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag(Values.EnemyTag) && _rigidbody.velocity.magnitude > 0.2f)
 		{
-			other.transform.GetComponent<IEnemy>().Hitted(_gunLaunchDamage, _direction);
+			other.transform.GetComponent<IInteractable>().Hitted(_gunLaunchDamage, _direction);
 		}
 	}
 }

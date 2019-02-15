@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using UnityEngine;
 
-public class BasicEnemyController : MonoBehaviour, IEnemy
+public class BasicEnemyController : MonoBehaviour, IInteractable
 {
     private Rigidbody2D _rigidbody;
 
@@ -109,5 +109,21 @@ public class BasicEnemyController : MonoBehaviour, IEnemy
     private void Push(Vector2 direction)
     {
         _rigidbody.AddForce(direction * _recoil, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag(Values.PlayerTag))
+        {
+            foreach (var point in other.contacts)
+            {
+                Debug.Log(point.normal);
+                
+                if (point.normal.y < 0.1f)
+                {
+                    other.collider.GetComponent<IInteractable>().Hitted(_damage, _movementDirection);
+                }
+            }
+        }
     }
 }

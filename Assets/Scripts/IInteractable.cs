@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IEnemy
+public interface IInteractable
 {
     void Hitted(int damage, Vector2 direction);
 }
