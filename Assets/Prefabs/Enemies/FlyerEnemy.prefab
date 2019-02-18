@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4235463431341926}
   - component: {fileID: 212065274832833484}
   - component: {fileID: 50028341719712994}
-  - component: {fileID: 58164743409391330}
   - component: {fileID: 114097184227758746}
+  - component: {fileID: 61438218199405324}
   m_Layer: 10
   m_Name: FlyerEnemy
   m_TagString: Enemy
@@ -92,8 +92,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &58164743409391330
-CircleCollider2D:
+--- !u!61 &61438218199405324
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -104,9 +104,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.025}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.75, y: 0.55}
+  m_EdgeRadius: 0
 --- !u!114 &114097184227758746
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -102,6 +102,7 @@ MonoBehaviour:
   _myTag: Player
   _hitTag: Enemy
   _time: 5
+  _damage: 2
 --- !u!212 &212650987863156694
 SpriteRenderer:
   m_ObjectHideFlags: 1

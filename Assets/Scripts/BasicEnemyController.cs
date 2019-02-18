@@ -27,6 +27,8 @@ public class BasicEnemyController : MonoBehaviour, IInteractable
     private bool _isIdle;
     private bool _isWalk;
     private bool _isPlayer;
+
+    private bool _isHitted;
     
     // Use this for initialization
     void Start()
@@ -117,13 +119,22 @@ public class BasicEnemyController : MonoBehaviour, IInteractable
         {
             foreach (var point in other.contacts)
             {
-                Debug.Log(point.normal);
                 
-                if (point.normal.y < 0.1f)
+                if (point.normal.y > -0.1f && _isHitted == false)
                 {
+                    _isHitted = true;
+                    
                     other.collider.GetComponent<IInteractable>().Hitted(_damage, _movementDirection);
                 }
             }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.collider.CompareTag(Values.PlayerTag))
+        {
+            _isHitted = false;
         }
     }
 }
