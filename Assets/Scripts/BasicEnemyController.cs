@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 public class BasicEnemyController : MonoBehaviour, IInteractable
@@ -137,7 +138,13 @@ public class BasicEnemyController : MonoBehaviour, IInteractable
     {
         if (other.collider.CompareTag(Values.PlayerTag))
         {
-            _isHitted = false;
+            StartCoroutine(WaitAndIsHitted());
         }
+    }
+
+    private IEnumerator WaitAndIsHitted()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _isHitted = false;
     }
 }

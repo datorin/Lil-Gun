@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 1807088884940826, guid: 7ad81cbc315c33549bb482806e7e7e39, type: 2}
-  _damage: 2
+  _damage: 1
   _bullets: 7
   _cooldown: 0.25
   _bulletSpeed: 20

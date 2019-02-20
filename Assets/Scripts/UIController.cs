@@ -14,6 +14,11 @@ public class UIController : MonoBehaviour
 	[SerializeField] private GameObject _filledBullets;
 	[SerializeField] private GameObject _emptyBullets;
 	[SerializeField] private GameObject _bulletsPosition;
+	[SerializeField] private GameObject _curePoints3;
+	[SerializeField] private GameObject _curePoints2;
+	[SerializeField] private GameObject _curePoints1;
+	[SerializeField] private GameObject _curePoints0;
+	[SerializeField] private GameObject _curePosition;
 
 	private int _currentHealthPoints;
 	private int _maxHealthPoints;
@@ -21,9 +26,12 @@ public class UIController : MonoBehaviour
 	private int _currentBullets;
 	private int _maxBullets;
 
+	private int _currentCurePoints;
+
 	private GameObject[] _hearts;
 	private GameObject[] _bullets;
-
+	private GameObject _cure;
+	
 	// Use this for initialization
 	void Start () {
 		_maxHealthPoints = _player.GetComponent<PlayerController>().MaxHealthPoints;
@@ -51,6 +59,10 @@ public class UIController : MonoBehaviour
 				new Vector2(_bulletsPosition.transform.localPosition.x + (9.4f * i), _bulletsPosition.transform.localPosition.y);
 			_bullets[i] = bullet;
 		}
+
+		_cure = Instantiate(_curePoints0, _curePosition.transform.position, Quaternion.identity);
+		_cure.transform.SetParent(transform,true);
+		_cure.transform.localScale = new Vector3(0.15f, 0.15f, 1);
 	}
 	
 	// Update is called once per frame
@@ -82,6 +94,24 @@ public class UIController : MonoBehaviour
 			{
 				_bullets[i].GetComponent<Image>().sprite = _emptyBullets.GetComponent<Image>().sprite;
 			}
+		}
+
+		_currentCurePoints = _player.GetComponent<PlayerController>().CurrentCurePoints;
+
+		switch (_currentCurePoints)
+		{
+			case 1:
+				_cure.GetComponent<Image>().sprite = _curePoints1.GetComponent<Image>().sprite;
+				break;
+			case 2:
+				_cure.GetComponent<Image>().sprite = _curePoints2.GetComponent<Image>().sprite;
+				break;
+			case 3:
+				_cure.GetComponent<Image>().sprite = _curePoints3.GetComponent<Image>().sprite;
+				break;
+			default:
+				_cure.GetComponent<Image>().sprite = _curePoints0.GetComponent<Image>().sprite;
+				break;
 		}
 	}
 }

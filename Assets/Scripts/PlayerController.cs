@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour, IInteractable
 
     [SerializeField] private int _maxHealthPoints;
     private int _currentHealthPoints;
+    
+    private int _curePointsNeeded = 3;
+    private int _currentCurePoints;
 
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _movementSpeed;
@@ -38,6 +41,12 @@ public class PlayerController : MonoBehaviour, IInteractable
     // Use this for initialization
     void Update()
     {
+        if (_currentHealthPoints < _maxHealthPoints && _currentCurePoints == _curePointsNeeded)
+        {
+            _currentHealthPoints += 1;
+            _currentCurePoints = 0;
+        }
+        
         if (Input.GetButtonDown("Jump"))
         {
             if (_onGround)
@@ -165,4 +174,11 @@ public class PlayerController : MonoBehaviour, IInteractable
     {
         get { return _maxHealthPoints; }
     }
+    
+    public int CurrentCurePoints
+    {
+        get { return _currentCurePoints; }
+        set { _currentCurePoints = value; }
+    }
+    
 }

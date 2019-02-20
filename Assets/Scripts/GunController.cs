@@ -43,7 +43,7 @@ public class GunController : MonoBehaviour
 	{
 		_direction = direction.normalized;
 		
-		if (_actualBullets <= 0)
+		if (_actualBullets <= 0 && _actualCooldown <= 0)
 		{
 			transform.parent.GetComponent<Animator>().SetBool("hasGun",false);
 			transform.parent.GetComponent<PlayerController>().Gun = null;
