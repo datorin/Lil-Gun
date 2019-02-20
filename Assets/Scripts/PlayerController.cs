@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour, IInteractable
         {
             foreach (var point in other.contacts)
             {
+                Debug.Log(point.normal);
                 if (point.normal.y > 0.9f)
                 {
                     _jumpRequest = true;

@@ -55,8 +55,11 @@ public class BasicEnemyController : MonoBehaviour, IInteractable
         }
 
         bool isGrounded = Physics2D.Linecast(transform.TransformPoint(Vector2.right * _detection), 
-                                             transform.TransformPoint(Vector2.right *_detection) + Vector3.down * 0.75f,
+                                             transform.TransformPoint(Vector2.right *_detection) + Vector3.down * 1f,
                                              LayerMask.GetMask(Values.GroundLayer));
+        
+        Debug.DrawLine(transform.TransformPoint(Vector2.right * _detection), 
+            transform.TransformPoint(Vector2.right *_detection) + Vector3.down * 1f);
         
         bool isBlocked = Physics2D.Linecast(transform.TransformPoint(Vector2.right * _detection), 
                                             transform.TransformPoint(Vector2.right *_detection) + (Vector3)_movementDirection * 0.2f,
