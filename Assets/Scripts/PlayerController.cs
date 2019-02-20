@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour, IInteractable
             _animator.SetBool("isMoving", false);
         }
 
-        if (Input.GetKey(KeyCode.K) && _gun != null)
+        if ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && _gun != null)
         {
             _gun.GetComponent<GunController>().Shoot(Vector2.right * _lastMovement);
         }
