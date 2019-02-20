@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IInteractable
 {
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
     [SerializeField] private GameObject _gun;
     [SerializeField] private GameObject _trigger;
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour, IInteractable
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _onGround = false;
         _lastMovement = 1;
         _actualAirJumps = _airJumps;
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour, IInteractable
     // Use this for initialization
     void Update()
     {
+        _animator.SetFloat("YVelocity", _rigidbody.velocity.y);
+        
         if (_currentHealthPoints < _maxHealthPoints && _currentCurePoints == _curePointsNeeded)
         {
             _currentHealthPoints += 1;
@@ -49,6 +53,8 @@ public class PlayerController : MonoBehaviour, IInteractable
         
         if (Input.GetButtonDown("Jump"))
         {
+            _animator.SetBool("isJumping", true);
+            
             if (_onGround)
             {
                 _jumpRequest = true;
@@ -66,7 +72,7 @@ public class PlayerController : MonoBehaviour, IInteractable
         if (Mathf.Abs(_movement) > 0)
         {
             _lastMovement = _movement;
-            GetComponent<Animator>().SetBool("isMoving", true);
+            _animator.SetBool("isMoving", true);
             if (_movement < 0)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -78,11 +84,11 @@ public class PlayerController : MonoBehaviour, IInteractable
         }
         else if (Math.Abs(_rigidbody.velocity.y) > 0.01f)
         {
-            GetComponent<Animator>().SetBool("isMoving", true);
+            _animator.SetBool("isMoving", true);
         }
         else
         {
-            GetComponent<Animator>().SetBool("isMoving", false);
+            _animator.SetBool("isMoving", false);
         }
 
         if (Input.GetKey(KeyCode.K) && _gun != null)
@@ -123,6 +129,7 @@ public class PlayerController : MonoBehaviour, IInteractable
                 if (point.normal.y > 0.9f && Math.Abs(_rigidbody.velocity.y) < 0.01f)
                 {
                     _onGround = true;
+                    _animator.SetBool("isJumping", false);
                     _rigidbody.gravityScale = _normalGravity;
                     _actualAirJumps = _airJumps;
                 }
