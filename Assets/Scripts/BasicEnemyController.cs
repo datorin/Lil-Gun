@@ -108,6 +108,8 @@ public class BasicEnemyController : MonoBehaviour, IInteractable
         Push(direction);
         if (_actualHealth <= 0)
         {
+            _actualHealth = 1000;
+            PlayerController.Instance.CurrentCurePoints += 1;
             Destroy(gameObject);
         }
     }

@@ -103,6 +103,7 @@ public class CasterEnemyController : MonoBehaviour, IInteractable
         Push(direction);
         if (_actualHealth <= 0)
         {
+            PlayerController.Instance.CurrentCurePoints += 1;
             Destroy(gameObject);
         }
     }

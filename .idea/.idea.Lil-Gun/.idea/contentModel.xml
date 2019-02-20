@@ -138,6 +138,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BasicEnemyController.cs" t="Include" />
+          <e p="BombEnemyController.cs" t="Include" />
           <e p="BulletController.cs" t="Include" />
           <e p="CasterEnemyController.cs" t="Include" />
           <e p="FlyerEnemyController.cs" t="Include" />
@@ -147,6 +148,8 @@
           <e p="GunTriggerController.cs" t="Include" />
           <e p="IInteractable.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="RoomCheckerController.cs" t="Include" />
+          <e p="RoomManager.cs" t="Include" />
           <e p="TriggerController.cs" t="Include" />
           <e p="UIController.cs" t="Include" />
           <e p="Values.cs" t="Include" />

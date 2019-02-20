@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+	public static GunController Instance;
+	
 	private Rigidbody2D _rigidbody;
 	
 	[SerializeField] private GameObject _bullet;
@@ -26,6 +28,7 @@ public class GunController : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
+		Instance = this;
 		_rigidbody = GetComponent<Rigidbody2D>();
 		
 		_actualBullets = 0;

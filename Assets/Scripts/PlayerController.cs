@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IInteractable
 {
+    public static PlayerController Instance;
+    
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     [SerializeField] private GameObject _gun;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+        Instance = this;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _onGround = false;
@@ -49,6 +52,11 @@ public class PlayerController : MonoBehaviour, IInteractable
         {
             _currentHealthPoints += 1;
             _currentCurePoints = 0;
+        }
+
+        if (_currentCurePoints > 3)
+        {
+            _currentCurePoints = 3;
         }
         
         if (Input.GetButtonDown("Jump"))
@@ -120,6 +128,11 @@ public class PlayerController : MonoBehaviour, IInteractable
         }
     }
 
+    public Vector2 GetCurrentRoom()
+    {
+        return RoomManager.GetRoom(transform.position);
+    }
+    
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag(Values.GroundTag))

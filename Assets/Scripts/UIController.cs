@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
 
-	[SerializeField] private GameObject _player;
+	private GameObject _player;
 	[SerializeField] private GameObject _filledHeart;
 	[SerializeField] private GameObject _emptyHeart;
 	[SerializeField] private GameObject _heartsPosition;
-	[SerializeField] private GameObject _gun;
+	
+	private GameObject _gun;
 	[SerializeField] private GameObject _filledBullets;
 	[SerializeField] private GameObject _emptyBullets;
 	[SerializeField] private GameObject _bulletsPosition;
+	
 	[SerializeField] private GameObject _curePoints3;
 	[SerializeField] private GameObject _curePoints2;
 	[SerializeField] private GameObject _curePoints1;
@@ -31,9 +33,11 @@ public class UIController : MonoBehaviour
 	private GameObject[] _hearts;
 	private GameObject[] _bullets;
 	private GameObject _cure;
-	
+
 	// Use this for initialization
 	void Start () {
+		_player = PlayerController.Instance.gameObject;
+		_gun = GunController.Instance.gameObject;
 		_maxHealthPoints = _player.GetComponent<PlayerController>().MaxHealthPoints;
 		_hearts = new GameObject[_maxHealthPoints];
 
