@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IInteractable
 {
@@ -181,8 +182,11 @@ public class PlayerController : MonoBehaviour, IInteractable
 
     public void Hitted(int damage, Vector2 direction)
     {
-        if(_currentHealthPoints < 0) return;
         _currentHealthPoints -= damage;
+        if (_currentHealthPoints <= 0)
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
     
     public int CurrentHealthPoints
